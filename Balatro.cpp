@@ -55,16 +55,21 @@ void help(){
 }
 
 struct joker{
-	int purchasePrice;
-	int salePrice;
-	string type,edition,time;
-	int add;
-	string description;
-	string rarity;
+	int purchasePrice;			// 购买价格
+	int salePrice;				// 出售价格
+	string type;				// 名称 也称类型
+	string edition;				// 版本类型
+	string time;				// 生效时机
+	int add;					// 筹码加成数值
+	string description;			// 效果描述文本
+	string rarity;				// 稀有度
+
+	// 判断相同类型的小丑牌
 	friend bool operator==(const joker &x,const joker &y){
 		return x.type==y.type;
 	}
 	
+	// 重置版本特效（根据概率随机生成）
 	void resetEdition(){
 		int t=rand()%1000;
 		if(t<3) edition="Negative";
@@ -74,10 +79,12 @@ struct joker{
 		else edition="Base";
 	}
 	
+	// 显示小丑牌信息
 	void show(){
 		cout<<'['<<rarity<<"Joker"<<']'<<type<<'('<<edition<<")   :"<<description<<'\n';
 	}
 }jokers[11];
+
 void jokerInit(){
 	jokers[1]={2,1,"Joker","Base","end",4,"+4 Mult(2 coins)","Common"};
 
