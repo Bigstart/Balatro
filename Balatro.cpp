@@ -114,16 +114,26 @@ string suitToString[6]={"Stone","Diamond","Club","Heart","Spade","Wild"};
 string numberToString[14]={"Stone","A","2","3","4","5","6","7","8","9","10","J","Q","K"};
 string enhanceName[9]={"","Bonus","Mult","Wild","Glass","Steel","Stone","Gold","Lucky"};
 string sealName[5]={"","Gold","Red","Blue","Purple"};	
+
+// 卡片结构体
 struct card{
-	int number,suit;
-	string enhance,seal;	
+	int number;			// 卡片的数字（1-A, 2-2, ..., 13-K）
+	int suit;			// 卡片的花色
+	string enhance;		// 卡片的增强效果
+	string seal;		// 卡片的蜡封
+
+	// 获取卡片的排序等级  如果是Stone就返回100  如果是A就返回14  其余的返回数字等级
 	int getRank(){
 		return enhance=="Stone"?100:number==1?14:number;
 	}
+
+	// 获取卡片的数字，Stone类型卡片的数字是0
 	int getNumber(){
 		return enhance=="Stone"?0:number;
 		return number;
 	}
+
+	// 获取卡片的花色，Stone的花色是0，Wild的花色是5，其他则按实际花色
 	int getSuit(){
 		if(enhance=="Stone") return 0;
 		if(enhance=="Wild") return 5;
@@ -139,55 +149,74 @@ struct card{
 		return x.number==y.number&&x.suit==y.suit&&x.enhance==y.enhance&&x.seal==y.seal;
 	}
 
+	// 随机设置卡片的增强效果
 	void resetEnhance(){
 		int t=rand()%100+1;
 		if((t-1)/3+1<=8) enhance=enhanceName[(t-1)/3+1];
 		else enhance="";
 	}
 	
+	// 随机设置卡片的封印效果
 	void resetSeal(){
 		int t=rand()%100+1;
 		if((t-1)/3+1<=4) seal=sealName[(t-1)/3+1];
 		else seal="";
 	}
 	
+	// 显示卡片信息
 	void show(){
 		cout<<numberToString[getNumber()]<<' '<<suitToString[getSuit()]<<' '<<(enhance==""?"":(enhance+"(enhance)"))<<' '<<(seal==""?"":(seal+"(seal)"))<<'\n';
 	}
 };
+
+// 牌组结构体
 struct Deck{
-	card c[105];
-	int cnt;
+	card c[105];			// 卡片数组，最大支持105张卡片
+	int cnt;				// 当前牌组中的卡片数量
 	
+	// 洗牌操作
 	void shufle(){
 		for(int i=1;i<=cnt;i++)
 			swap(c[i],c[rand()%i+1]);
 	}
+
+	// 显示牌组中的所有卡片
 	void show(){
 		for(int i=1;i<=cnt;i++){
 			cout<<"("<<i<<")  ";
 			c[i].show();
 		}
 	}
+
+	// 对卡片进行排序
 	void sort(){
 		std::sort(c+1,c+1+cnt);
 	}
 	
+	// 当前指向牌组头部的指针
 	int head=1;
+
+	// 判断牌组是否为空
 	bool empty(){
 		return head>cnt;
 	}
+
+	// 重新设置头指针，回到牌组的开始位置
 	void rewind(){
 		head=1;
 	}
+
+	// 获取当前头部的卡片并将头指针向后移动
 	card GetHead(){
 		return c[head++];
 	}
 	
+	// 向牌组中插入一张新卡片
 	void insert(card x){
 		c[++cnt]=x;
 	}
 	
+	// 从牌组中移除指定卡片
 	void remove(card x){
 		for(int i=1;i<=cnt;i++)
 			if(c[i]==x){
@@ -198,6 +227,7 @@ struct Deck{
 			}
 	}
 
+	// 获取牌组的类型
 	int GetType(){
 		
 		sort();
