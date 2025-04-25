@@ -230,34 +230,50 @@ struct Deck{
 	
 }deck,hand,calc;
 
+// 消耗品类，定义了一些与消耗品相关的信息，包括名称、描述、价格等
 struct consumables{
-	string type;
-	string name;
-	string description;
-	int price;
+	string type;			// 类型
+	string name;			// 名称
+	string description;		// 描述
+	int price;				// 价格
+
 	consumables(){};
+
+	// 带参数的构造函数，用于初始化消耗品的类型、名称、描述和价格
 	consumables(string Type,string Name,string Des,int Price){type=Type,name=Name,description=Des,price=Price;}
+
 	friend bool operator==(const consumables &x,const consumables &y){
 		return x.type==y.type&&x.name==y.name;
 	}
 	friend bool operator<(const consumables &x,const consumables &y){
 		return x.type<y.type||(x.type==y.type&&x.name<y.name);
 	}
+
+	// 显示消耗品的详细信息
+	// 打印出消耗品的类型、名称和描述	
 	void show(){
 		cout<<type<<' '<<name<<"   :"<<description<<'\n';
 	}
 }spectrals[10],tarots[15],planets[13];
 
+
+// 玩家类，管理玩家的金钱、卡片、Joker卡片、消耗品等
 struct player{
-	int money;
+	int money;			// 玩家拥有的钱数
 	
-	card c[105];
-	int ccnt;
+	card c[105];		// 玩家持有的卡片数组
+	int ccnt;			// 当前持有卡片的数量
+
+	// 添加一张卡片到玩家的卡片列表
+	// 参数 t: 要添加的卡片对象	
 	void addCard(card t){
 		c[++ccnt]=t;
 		cout<<"Successfully added card ";
 		t.show();
 	}
+
+	// 移除一张卡片
+	// 参数 t: 要移除的卡片对象	
 	void remCard(card t){
 		for(int i=1;i<=ccnt;i++)
 			if(c[i]==t){
@@ -267,6 +283,9 @@ struct player{
 				break;
 			}
 	}
+
+	// 增强一张卡片
+	// 参数 t: 需要增强的卡片	
 	void enhance(const card &t,string type){
 		for(int i=1;i<=ccnt;i++)
 			if(c[i]==t){
@@ -277,6 +296,9 @@ struct player{
 			}
 
 	}
+
+	// 封印一张卡片
+	// 参数 t: 需要封印的卡片	
 	void seal(const card &t,string type){
 		for(int i=1;i<=ccnt;i++)
 			if(c[i]==t){
@@ -286,6 +308,9 @@ struct player{
 				break;
 			}
 	}
+
+	// 重置卡片的花色
+	// 参数 t: 需要重置花色的卡片	
 	void resetSuit(const card &t,int suit){
 		for(int i=1;i<=ccnt;i++)
 			if(c[i]==t){
@@ -294,8 +319,13 @@ struct player{
 			}
 	}
 	
-	joker j[105];
-	int jcnt=0,JcntMax=5;
+	joker j[105];				// 玩家拥有的Joker卡片数组
+	int jcnt=0;					// 当前拥有的Joker卡片数量
+	int JcntMax=5;				// 最大Joker卡片数量
+
+
+	// 添加一张Joker卡片
+	// 参数 tmp: 要添加的Joker卡片	
 	void addJoker(joker tmp){
 		if(tmp.edition=="Negative"){
 			++JcntMax;
@@ -318,6 +348,9 @@ struct player{
 			cout<<"Sorry,but there is no room for this Joker\n";
 		}
 	}
+
+	// 移除一张Joker卡片
+	// 参数 tmp: 要移除的Joker卡片	
 	void remJoker(joker tmp){
 		for(int i=1;i<=jcnt;i++)
 			if(j[i]==tmp){
@@ -331,9 +364,13 @@ struct player{
 			}
 	}
 	
-	consumables co[5];
-	int cocnt,cocntMax=2;
+	consumables co[5];			// 玩家拥有的消耗品数组
+	int cocnt;					// 当前拥有的消耗品数量
+	int cocntMax=2;				// 最大消耗品数量
 	
+
+	// 添加一张消耗品卡片
+	// 参数 tmp: 要添加的消耗品卡片	
 	void addConsumable(consumables tmp){
 		if(cocnt<cocntMax){
 			co[++cocnt]=tmp;
@@ -344,6 +381,9 @@ struct player{
 		}
 			
 	}
+
+	// 移除一张消耗品卡片
+	// 参数 tmp: 要移除的消耗品卡片	
 	void remConsumable(consumables tmp){
 		for(int i=1;i<=cocnt;i++)
 			if(co[i]==tmp){
@@ -353,6 +393,8 @@ struct player{
 				break;
 			}		
 	}
+
+	// 显示所有消耗品卡片
 	void showConsumable(){
 		for(int i=1;i<=cocnt;i++)
 			cout<<"("<<i<<")    ",co[i].show();
