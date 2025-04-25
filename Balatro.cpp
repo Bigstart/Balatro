@@ -1,4 +1,8 @@
-#include<bits/stdc++.h>
+#include <string> 
+#include <iostream> 
+#include <map> 
+#include <algorithm> 
+
 using namespace std;
 
 
@@ -75,25 +79,25 @@ struct joker{
 	}
 }jokers[11];
 void jokerInit(){
-	jokers[1]=(joker){2,1,"Joker","Base","end",4,"+4 Mult(2 coins)","Common"};
+	jokers[1]={2,1,"Joker","Base","end",4,"+4 Mult(2 coins)","Common"};
 
-	jokers[2]=(joker){5,2,"Half Joker","Base","end",20,"+20 Mult if played hand contains 3 or fewer cards.(5 coins)","Common"};
+	jokers[2]={5,2,"Half Joker","Base","end",20,"+20 Mult if played hand contains 3 or fewer cards.(5 coins)","Common"};
 	
-	jokers[3]=(joker){5,2,"Mime","Base","end",0,"Retrigger all card held in hand abilities(5 coins)","Uncommon"};
+	jokers[3]={5,2,"Mime","Base","end",0,"Retrigger all card held in hand abilities(5 coins)","Uncommon"};
 	
-	jokers[4]=(joker){5,2,"Banner","Base","final end",30,"+30 Chips for each remaining discard(5 coins)","Common"};
+	jokers[4]={5,2,"Banner","Base","final end",30,"+30 Chips for each remaining discard(5 coins)","Common"};
 	
-	jokers[5]=(joker){5,2,"8 Ball","Base","middle",0,"1 in 4 chance for each played 8 to create a Tarot card when scored(Must have room)(5 coins)","Common"}; 
+	jokers[5]={5,2,"8 Ball","Base","middle",0,"1 in 4 chance for each played 8 to create a Tarot card when scored(Must have room)(5 coins)","Common"}; 
 	
-	jokers[6]=(joker){8,4,"Fibonacci","Base","middle",8,"Each played Ace, 2, 3, 5, or 8 gives +8 Mult when scored(8 coins)","Uncommon"};
+	jokers[6]={8,4,"Fibonacci","Base","middle",8,"Each played Ace, 2, 3, 5, or 8 gives +8 Mult when scored(8 coins)","Uncommon"};
 	
-	jokers[7]=(joker){6,3,"Hack","Base","middle",0,"Retrigger each played 2, 3, 4, or 5(6 coins)","Uncommon"};
+	jokers[7]={6,3,"Hack","Base","middle",0,"Retrigger each played 2, 3, 4, or 5(6 coins)","Uncommon"};
 	
-	jokers[8]=(joker){7,3,"Shortcut","Base","passive",0,"Allows Straights to be made with gaps of 1 rank(ex: 10 8 6 5 3)(7 coins)","Uncommon"};
+	jokers[8]={7,3,"Shortcut","Base","passive",0,"Allows Straights to be made with gaps of 1 rank(ex: 10 8 6 5 3)(7 coins)","Uncommon"};
 	
-	jokers[9]=(joker){4,2,"Juggler","Base","passive",0,"+1 hand size(4 coins)","Common"};
+	jokers[9]={4,2,"Juggler","Base","passive",0,"+1 hand size(4 coins)","Common"};
 	
-	jokers[10]=(joker){6,3,"Bull","Base","end",0,"+2 Chips for each $1 you have(6 coins)","Uncommon"};
+	jokers[10]={6,3,"Bull","Base","end",0,"+2 Chips for each $1 you have(6 coins)","Uncommon"};
 }
 
 
@@ -359,67 +363,67 @@ struct player{
 
 map<consumables,int> PlanettoInt;
 void planetInit(){
-	planets[1]=(consumables){"planet","Eris","Level up \"Flush Five\" (3 coins)",3};
-	planets[2]=(consumables){"planet","Ceres","Level up \"Flush House\" (3 coins)",3};
-	planets[3]=(consumables){"planet","Planet X","Level up \"Five of a Kind\" (3 coins)",3};
-	planets[4]=(consumables){"planet","Neptune","Level up \"Straight Flush\" (3 coins)",3};
-	planets[5]=(consumables){"planet","Mars","Level up \"Four of a King\" (3 coins)",3};
-	planets[6]=(consumables){"planet","Earth","Level up \"Full House\" (3 coins)",3};
-	planets[7]=(consumables){"planet","Jupiter","Level up \"Flush\" (3 coins)",3};
-	planets[8]=(consumables){"planet","Saturn","Level up \"Straight\" (3 coins)",3};
-	planets[9]=(consumables){"planet","Venus","Level up \"Three of a King\" (3 coins)",3};
-	planets[10]=(consumables){"planet","Uranus","Level up \"Two Pair\" (3 coins)",3};
-	planets[11]=(consumables){"planet","Mercury","Level up \"Pair\" (3 coins)",3};
-	planets[12]=(consumables){"planet","Pluto","Level up \"High Card\" (3 coins)",3};
+	planets[1]={"planet","Eris","Level up \"Flush Five\" (3 coins)",3};
+	planets[2]={"planet","Ceres","Level up \"Flush House\" (3 coins)",3};
+	planets[3]={"planet","Planet X","Level up \"Five of a Kind\" (3 coins)",3};
+	planets[4]={"planet","Neptune","Level up \"Straight Flush\" (3 coins)",3};
+	planets[5]={"planet","Mars","Level up \"Four of a King\" (3 coins)",3};
+	planets[6]={"planet","Earth","Level up \"Full House\" (3 coins)",3};
+	planets[7]={"planet","Jupiter","Level up \"Flush\" (3 coins)",3};
+	planets[8]={"planet","Saturn","Level up \"Straight\" (3 coins)",3};
+	planets[9]={"planet","Venus","Level up \"Three of a King\" (3 coins)",3};
+	planets[10]={"planet","Uranus","Level up \"Two Pair\" (3 coins)",3};
+	planets[11]={"planet","Mercury","Level up \"Pair\" (3 coins)",3};
+	planets[12]={"planet","Pluto","Level up \"High Card\" (3 coins)",3};
 	for(int i=1;i<=12;i++) PlanettoInt[planets[i]]=i;
 }
 
 void tarotInit(){
-	tarots[1]=(consumables){"tarot","The Magician[I]","Enhances 2 selected cards to Lucky Cards (3 coins)",3};
+	tarots[1]={"tarot","The Magician[I]","Enhances 2 selected cards to Lucky Cards (3 coins)",3};
 
-	tarots[2]=(consumables){"tarot","The Empress[III]","Enhances 2 selected cards to Mult Cards (3 coins)",3};
+	tarots[2]={"tarot","The Empress[III]","Enhances 2 selected cards to Mult Cards (3 coins)",3};
 
-	tarots[3]=(consumables){"tarot","The Hierophant[V]","Enhances 2 selected cards to Bonus Cards (3 coins)",3};
+	tarots[3]={"tarot","The Hierophant[V]","Enhances 2 selected cards to Bonus Cards (3 coins)",3};
 
-	tarots[4]=(consumables){"tarot","The Lovers[VI]","Enhances 1 selected card into a Wild Card (3 coins)",3};
+	tarots[4]={"tarot","The Lovers[VI]","Enhances 1 selected card into a Wild Card (3 coins)",3};
 
-	tarots[5]=(consumables){"tarot","The Chariot[VII]","Enhances 1 selected card into a Steel Card (3 coins)",3};
+	tarots[5]={"tarot","The Chariot[VII]","Enhances 1 selected card into a Steel Card (3 coins)",3};
 
-	tarots[6]=(consumables){"tarot","Justice[VIII]","Enhances 1 selected card into a Glass Card (3 coins)",3};
+	tarots[6]={"tarot","Justice[VIII]","Enhances 1 selected card into a Glass Card (3 coins)",3};
 
-	tarots[7]=(consumables){"tarot","The Hermit[IX]","Doubles money(Max of $20) (3 coins)",3};
+	tarots[7]={"tarot","The Hermit[IX]","Doubles money(Max of $20) (3 coins)",3};
 
-	tarots[8]=(consumables){"tarot","The Wheel of Fortune[X]","1 in 4 chance to add Foil, Holographic, or Polychrome edition to a random Joker (3 coins)",3};
+	tarots[8]={"tarot","The Wheel of Fortune[X]","1 in 4 chance to add Foil, Holographic, or Polychrome edition to a random Joker (3 coins)",3};
 
-	tarots[9]=(consumables){"tarot","The Devil[XV]","Enhances 1 selected card into a Gold Card (3 coins)",3};
+	tarots[9]={"tarot","The Devil[XV]","Enhances 1 selected card into a Gold Card (3 coins)",3};
 
-	tarots[10]=(consumables){"tarot","The Tower[XVI]","Enhances 1 selected card into a Stone Card (3 coins)",3};
+	tarots[10]={"tarot","The Tower[XVI]","Enhances 1 selected card into a Stone Card (3 coins)",3};
 
-	tarots[11]=(consumables){"tarot","The Star[XVII]","Converts up to 3 selected cards to Diamonds (3 coins)",3};
+	tarots[11]={"tarot","The Star[XVII]","Converts up to 3 selected cards to Diamonds (3 coins)",3};
 
-	tarots[12]=(consumables){"tarot","The Moon[XVIII]","Converts up to 3 selected cards to Clubs (3 coins)",3};
+	tarots[12]={"tarot","The Moon[XVIII]","Converts up to 3 selected cards to Clubs (3 coins)",3};
 
-	tarots[13]=(consumables){"tarot","The Sun[XIX]","Converts up to 3 selected cards to Hearts (3 coins)",3};
+	tarots[13]={"tarot","The Sun[XIX]","Converts up to 3 selected cards to Hearts (3 coins)",3};
 
-	tarots[14]=(consumables){"tarot","The World[XXI]","Converts up to 3 selected cards to Spades (3 coins)",3};
+	tarots[14]={"tarot","The World[XXI]","Converts up to 3 selected cards to Spades (3 coins)",3};
 }
 
 void spectralInit(){
-	spectrals[1]=(consumables){"spectral","Incantation","Destroy 1 random card in your hand, but add 4 random Enhanced numbered cards instead. (4 coins)",4};
+	spectrals[1]={"spectral","Incantation","Destroy 1 random card in your hand, but add 4 random Enhanced numbered cards instead. (4 coins)",4};
 	
-	spectrals[2]=(consumables){"spectral","Wraith","Creates a random Rare Joker (must have room), but sets money to $0. (4 coins)",4};
+	spectrals[2]={"spectral","Wraith","Creates a random Rare Joker (must have room), but sets money to $0. (4 coins)",4};
 	
-	spectrals[3]=(consumables){"spectral","Sigil","Converts every card in your hand to a single, random Suit. (4 coins)",4};
+	spectrals[3]={"spectral","Sigil","Converts every card in your hand to a single, random Suit. (4 coins)",4};
 	
-	spectrals[4]=(consumables){"spectral","Talisman","Adds a Gold Seal to 1 selected card. (4 coins)",4};
+	spectrals[4]={"spectral","Talisman","Adds a Gold Seal to 1 selected card. (4 coins)",4};
 	
-	spectrals[5]=(consumables){"spectral","Deja Vu","Adds a Red Seal to 1 selected card. (4 coins)",4}; 
+	spectrals[5]={"spectral","Deja Vu","Adds a Red Seal to 1 selected card. (4 coins)",4}; 
 	
-	spectrals[6]=(consumables){"spectral","Trance","Adds a Blue Seal to 1 selected card. (4 coins)",4};
+	spectrals[6]={"spectral","Trance","Adds a Blue Seal to 1 selected card. (4 coins)",4};
 	
-	spectrals[7]=(consumables){"spectral","Medium","Adds a Purple Seal to 1 selected card. (4 coins)",4};
+	spectrals[7]={"spectral","Medium","Adds a Purple Seal to 1 selected card. (4 coins)",4};
 	
-	spectrals[8]=(consumables){"spectral","Black Hole","Upgrades every poker hand (including secret hands not yet discovered) by one level. (4 coins)",4};//0.3% 出现
+	spectrals[8]={"spectral","Black Hole","Upgrades every poker hand (including secret hands not yet discovered) by one level. (4 coins)",4};//0.3% 出现
 }
 
 void getTarot(int type){
@@ -537,7 +541,7 @@ void SelecttoSeal(int num,string type){
 	}
 }	
 card randomEnhancedNumberCard(){
-	return (card){rand()%10+1,rand()%4+1,enhanceName[rand()%8+1],""};
+	return {rand()%10+1,rand()%4+1,enhanceName[rand()%8+1],""};
 }
 void useSpectral(const consumables &tmp){
 	if(tmp.name=="Incantation"){
@@ -591,25 +595,25 @@ struct SHOP{
 	}packs[16];
 	
 	void packInit(){
-		packs[1]=(pack){"Standard Pack","NORMAL",4,3,1,"Choose 1 of up to 3 Playing cards to add to your deck (4 coins)"};
-		packs[2]=(pack){"Standard Pack","JUMBO",6,5,1,"Choose 1 of up to 5 Playing cards to add to your deck (6 coins)"};
-		packs[3]=(pack){"Standard Pack","MEGA",8,5,2,"Choose 2 of up to 5 Playing cards to add to your deck (8 coins)"};//Poker 
+		packs[1]={"Standard Pack","NORMAL",4,3,1,"Choose 1 of up to 3 Playing cards to add to your deck (4 coins)"};
+		packs[2]={"Standard Pack","JUMBO",6,5,1,"Choose 1 of up to 5 Playing cards to add to your deck (6 coins)"};
+		packs[3]={"Standard Pack","MEGA",8,5,2,"Choose 2 of up to 5 Playing cards to add to your deck (8 coins)"};//Poker 
 		
-		packs[4]=(pack){"Arcana Pack","NORMAL",4,3,1,"Choose 1 of up to 3 Tarot cards to be used immediately (4 coins)"};
-		packs[5]=(pack){"Arcana Pack","JUMBO",6,5,1,"Choose 1 of up to 5 Tarot cards to be used immediately (6 coins)"};
-		packs[6]=(pack){"Arcana Pack","MEGA",8,5,2,"Choose 2 of up to 5 Tarot cards to be used immediately (8 coins)"};//Tarot
+		packs[4]={"Arcana Pack","NORMAL",4,3,1,"Choose 1 of up to 3 Tarot cards to be used immediately (4 coins)"};
+		packs[5]={"Arcana Pack","JUMBO",6,5,1,"Choose 1 of up to 5 Tarot cards to be used immediately (6 coins)"};
+		packs[6]={"Arcana Pack","MEGA",8,5,2,"Choose 2 of up to 5 Tarot cards to be used immediately (8 coins)"};//Tarot
 
-		packs[7]=(pack){"Celestial Pack","NORMAL",4,3,1,"Choose 1 of up to 3 Planet cards to be used immediately (4 coins)"};
-		packs[8]=(pack){"Celestial Pack","JUMBO",6,5,1,"Choose 1 of up to 5 Planet cards to be used immediately (6 coins)"};
-		packs[9]=(pack){"Celestial Pack","MEGA",8,5,2,"Choose 2 of up to 5 Planet cards to be used immediately (8 coins)"};//Planet
+		packs[7]={"Celestial Pack","NORMAL",4,3,1,"Choose 1 of up to 3 Planet cards to be used immediately (4 coins)"};
+		packs[8]={"Celestial Pack","JUMBO",6,5,1,"Choose 1 of up to 5 Planet cards to be used immediately (6 coins)"};
+		packs[9]={"Celestial Pack","MEGA",8,5,2,"Choose 2 of up to 5 Planet cards to be used immediately (8 coins)"};//Planet
 		
-		packs[10]=(pack){"Buffoon Pack","NORMAL",4,2,1,"Choose 1 of up to 2 Joker cards (4 coins)"};
-		packs[11]=(pack){"Buffoon Pack","JUMBO",6,4,1,"Choose 1 of up to 4 Joker cards (6 coins)"};
-		packs[12]=(pack){"Buffoon Pack","MEGA",8,4,2,"Choose 2 of up to 4 Joker cards (8 coins)"};//Joker
+		packs[10]={"Buffoon Pack","NORMAL",4,2,1,"Choose 1 of up to 2 Joker cards (4 coins)"};
+		packs[11]={"Buffoon Pack","JUMBO",6,4,1,"Choose 1 of up to 4 Joker cards (6 coins)"};
+		packs[12]={"Buffoon Pack","MEGA",8,4,2,"Choose 2 of up to 4 Joker cards (8 coins)"};//Joker
 
-		packs[13]=(pack){"Spectral Pack","NORMAL",4,2,1,"Choose 1 of up to 2 Spectral cards to be used immediately (4 coins)"};
-		packs[14]=(pack){"Spectral Pack","JUMBO",6,4,1,"Choose 1 of up to 4 Spectral cards to be used immediately (6 coins)"};
-		packs[15]=(pack){"Spectral Pack","MEGA",8,4,2,"Choose 2 of up to 4 Spectral cards to be used immediately (8 coins)"};//Spectral
+		packs[13]={"Spectral Pack","NORMAL",4,2,1,"Choose 1 of up to 2 Spectral cards to be used immediately (4 coins)"};
+		packs[14]={"Spectral Pack","JUMBO",6,4,1,"Choose 1 of up to 4 Spectral cards to be used immediately (6 coins)"};
+		packs[15]={"Spectral Pack","MEGA",8,4,2,"Choose 2 of up to 4 Spectral cards to be used immediately (8 coins)"};//Spectral
 	}
 	
 	int randomPack(){
@@ -752,7 +756,7 @@ struct SHOP{
 		card tmpcard;
 		hand.cnt=0;
 		for(int i=1;i<=tmp.total;i++){
-			tmpcard=(card){rand()%13+1,rand()%4+1,"",""};
+			tmpcard={rand()%13+1,rand()%4+1,"",""};
 			tmpcard.resetEnhance();
 			tmpcard.resetSeal();
 			hand.insert(tmpcard);
@@ -1423,7 +1427,7 @@ void init(){
 	p1.ccnt=52;
 	for(int i=1;i<=4;i++) 
 		for(int j=1;j<=13;j++)
-			p1.c[(i-1)*13+j]=(card){j,i,"",""};
+			p1.c[(i-1)*13+j]={j,i,"",""};
 	p1.jcnt=0;
 	jokerInit();
 	planetInit();
